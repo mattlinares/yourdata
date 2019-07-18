@@ -1,4 +1,4 @@
-# yourdata
+# yourData
 
 The web needs tools to show users how they are tracked and segmented, giving them easy visibility and control over the data and algorithms that shape what they see online.
 
