@@ -22,4 +22,4 @@ We are also keen for collaborators, contributors, sponsors and supporters of all
 
 Mockup of yourData features on [openDemocracy.net](openDemocracy.net).
 
-![Mockup of yourData features](https://opendemocracy.ams3.digitaloceanspaces.com/yourData-segment.jpg)
+![Mockup of yourData features](https://github.com/mattlinares/yourdata/blob/master/yourData-segment.jpg)
