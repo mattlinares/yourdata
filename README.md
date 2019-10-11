@@ -18,3 +18,8 @@ This project is an attempt to provide tools and set standards for user data tran
 
 We are also keen for collaborators, contributors, sponsors and supporters of all sorts. Please email matthew.linares  -@-  opendemocracy.net
 
+–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+Mockup of yourData features on [openDemocracy.net](openDemocracy.net).
+
+![Mockup of yourData features](https://opendemocracy.ams3.digitaloceanspaces.com/yourData-segment.jpg)
