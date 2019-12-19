@@ -6,7 +6,7 @@ yourData is a set of standards and patterns to enable the front-end display of p
 
 This project will research the following elements to make this protocol applicable to other systems.
 
-- An [ontology](https://www.w3.org/OWL/) of demographic user data 
+- An [ontology](https://www.w3.org/OWL/) of demographic user data (example: [Schema.org](https://schema.org/Person))
 - Guidelines and patterns for applying the ontology within other frameworks e.g. CMSs
 - Process guidelines e.g. for integrating such a featureset into organisational GDPR activity
 - Graphical assets to familiarise users with the protocol thus increasing data accessibility
