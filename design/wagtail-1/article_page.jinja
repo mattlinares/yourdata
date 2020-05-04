@@ -1,0 +1,194 @@
+{% from 'macros.jinja' import stream with context %}
+{% set body_class, parent = 'template-articlepage sidebar-layout page-'~page.slug~' parent-'~page.get_parent().slug, page.get_parent() %}
+{% set no_header = true %}
+{% extends 'base.jinja' %}
+{#
+{% set parent = page.get_parent() %}
+<nav class="breadcrumb">
+  <a href="{{parent.url}}">{{parent.title}}</a>
+</nav> #}
+{% block pre_content %}
+<article class="article-page {% if page.language %}{% if page.language.code == 'ar' %}lang-rtl{% endif %}{% endif %}">
+{# ARTICLE HEADER #}
+    <div class="article-page__header {% if page.main_image %}article-page--header-extended{% endif %}">
+        <div class="article-page__wrapper">
+            {% if page.section_url %}
+            <div class="article-page__project project project-{{ page.section_slug }} {% if chosen_segment %}yourData{% endif %}">
+                <a href="{{ page.section_url }}">{{ page.section }}{% if page.article_type.title != 'Not specified' and page.article_type != None %}:&nbsp;{{ page.article_type }}{% endif %}</a>
+                {% if chosen_segment %}
+                    {% if 'Location' in chosen_segment.name %}
+                        {% if 'digitaliberties' in page.url_path %}
+                            <svg role="img" class="yourData-icon">
+                                <use xlink:href="#icon-yourdata"></use>
+                            </svg>
+                            </h3>
+                            <div class="yourData-data yourData">
+                                <span>your<strong>Data</strong></span>
+                                <p>Overview of data about you used to serve this content. <a href="/what">[?]</a></p>
+                                <p>– {{ chosen_segment.name }}</p>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            </div>
+            {% endif %}
+
+            <h1 class="article-page__title">{{ page.title }}</h1>
+
+            <div class="article-page__summary-container">
+                <div class="article-page__summary">{{ page.excerpt|richtext }}</div>
+            </div>
+
+            <div class="article-page__profile-photo-container">
+                <div class="article-page__profile-photos">
+                    {% if page.author_list %}
+                    {% for author in page.author_list %}
+                        {% if author.avatar %}
+                            {{image(author.avatar, 'fill-200x200', class="article-page__profile-photo")}}
+                        {% else %}
+                            <div class="article-page__profile-photo--no-photo"></div>
+                        {% endif %}
+
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="article-page__authors-container">
+                <div class="article-page__authors">
+                    {% for author in page.author_list %}
+                        <span class="article-page__author-link">
+                            <a href="{{ author_page_url }}{{ author.slug }}/">
+                                {{ author.full_name }}
+                            </a>
+                        </span>
+                    {% endfor %}
+                </div>
+
+            </div>
+
+            <div class="article-page__date">
+                {% block date %}{{ page.display_date|nicedate }}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% set block_location = 'Top of content' %}
+{% include 'blocks/taggable_block.jinja' %}
+{% endblock %}
+
+{% block content %}
+    {# ARTICLE #}
+    <div class="article-page__wrapper article-page__article-content {% if page.main_image %}article-page--has-main-img{% endif %}">
+
+        {% block main_image %}
+        {% if page.main_image %}
+        {% if page.main_image_alttext_override %}
+            {% set alt = page.main_image_alttext_override %}
+        {% else %}
+            {% set alt = page.main_image.alttext %}
+        {% endif %}
+        {% if page.main_image_credit_override %}
+            {% set credit = page.main_image_credit_override %}
+        {% else %}
+            {% set credit = page.main_image.credit %}
+        {% endif %}
+        {% if page.main_image_caption_override %}
+            {% set caption = page.main_image_caption_override %}
+        {% else %}
+            {% set caption = page.main_image.caption %}
+        {% endif %}
+        {% if page.featured_video_url and video_embed(page.featured_video_url, 680) != None %}
+            <div class="article-page__main-img-container article-page__main-vid-container article-page__media-content video">
+                {{ video_embed(page.featured_video_url, 680)|safe }}
+        {% else %}
+            <div class="article-page__main-img-container">
+            <figure>
+                {{ image(page.main_image, 'max-760x504', class="header-image", alt=alt) }}
+                <figcaption>
+                    {% if caption %}{{ caption|richtext }}{% endif %}{% if caption and credit %} | {% endif %}{% if credit %}{{ credit|richtext }}{% endif %}
+                </figcaption>
+            </figure>
+        {% endif %}
+        </div>
+        {% endif %}
+        {% endblock %}
+
+        {% if partner_image %}
+            <div class="article-page__partner-img-container">
+                <figure>
+                <a href="{{ partner_page.url }}">
+                    {{ image(partner_image, 'width-760', class="partner-image")}}
+                </a>
+                </figure>
+            </div>
+        {% endif %}
+
+
+        <div class="article-page__left-sidebar">
+            {% include 'partials/share_article.jinja' %}
+            {% if page.soundcloud_url %}
+            {% include 'partials/article_audio.jinja' %}
+            {% endif %}
+        </div>
+
+        <div class="article-page__right-sidebar">
+            {% include 'partials/article_newsletter.jinja' %}
+        </div>
+
+        {% block stream %}
+            {{stream(page.body)}}
+        {% endblock %}
+
+    </div>
+</article>
+
+{% set block_location = 'Bottom of content' %}
+{% set cta_block_exists = namespace(exists=false) %}
+{% include 'blocks/taggable_block.jinja' %}
+<section class="article__mobile-sharing">
+    {% include 'partials/share_article.jinja' %}
+</section>
+
+{{stream(page.footer)}}
+
+<section class="comment-section">
+    <div class="wrapper">
+        <h2 class="section-heading">{{_('Comments')}}</h2>
+        <span class="comment-section__intro {% if page.language %}{% if page.language.code == 'ar' %}lang-rtl{% endif %}{% endif %}">{{_('We encourage anyone to comment, please consult')}} <a href="{{ comment_page_url(page) }}">{{ _('the oD commenting guidelines') }}</a> {{_('if you have any questions.') }}</span>
+
+        <div class="comment-section__comments-container">
+            <div class="comment-section__comments">
+                <div id="disqus_thread">
+                <script>
+                var disqus_config = function () {
+                    this.page.url = "{{ request.build_absolute_uri() }}";
+                    this.page.identifier = "{{ page.id }}";
+                    this.language = "{{ page.language.code }}";
+                };
+
+                (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://{{ disqus_id }}.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+                })();
+                </script>
+                <noscript>{{_('Please enable JavaScript to view the')}} <a href="https://disqus.com/?ref_noscript">{{_('comments powered by Disqus.')}}</a></noscript>
+                </div>
+            </div>
+            {# <div class="comment-section__read-more">
+                <span class="comment-section__label">Read more</span>
+            </div> #}
+        </div>
+    </div>
+</section>
+
+{% include 'partials/article_footer.jinja' %}
+
+{% endblock %}
+
+{% block extra_js %}
+    {% assets "js_share" %}
+        <script type="text/javascript" src="{{ASSET_URL}}"></script>
+    {% endassets %}
+{% endblock %}

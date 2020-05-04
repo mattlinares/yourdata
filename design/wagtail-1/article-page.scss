@@ -1,0 +1,49 @@
+// yourData styles only. Other site styles are omitted here.
+
+.yourData-icon {
+    position: relative;
+    width: 22px;
+    height: 12px;
+}
+
+@media screen and (max-width: 150px) {
+    .yourData-icon {
+        position: relative;
+        right: -95%;
+        bottom: 50%
+        ;
+    }
+}
+
+.yourData-icon-bottom {
+    top: 29px;
+    width: 50px;
+    height: 50px; 
+}
+
+.yourData-data {
+    font-size: 1.2rem;
+    text-transform: none;
+    letter-spacing: 0;
+    border-top: solid 6px #F3F3F3;
+    display: none;
+    z-index: 2;
+    position: absolute;
+    top: 150px;
+    background:
+rgba(255, 255, 255, 0.97);
+    padding: 25px 25px 15px;
+    p {
+        margin: 22px 0 15px;
+    }
+}
+
+@media screen and (max-width: 32rem) {
+    .yourData-data {
+        right: 0;
+    }
+}
+
+.yourData:hover .yourData-data {
+    display: inline;
+}
