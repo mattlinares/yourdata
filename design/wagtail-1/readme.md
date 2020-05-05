@@ -13,3 +13,6 @@ This is implemented using the [Wagxperience personalisation module](http://wagxp
 
 
 We also have a CodePen where design suggestions can be made: https://codepen.io/mattlinares/pen/RwWxPZL
+
+
+yourData icon is Creative Commons CCBY by Fauzan Adiima from The Noun Project collection. https://thenounproject.com/fauzan94/collection/cloud-computing-glyph-24/?i=2645467
