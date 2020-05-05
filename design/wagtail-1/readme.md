@@ -1,4 +1,4 @@
-The following files show the first, live implementation of yourData on our Wagtail (Django) website which is also visible to UK visitors here: opendemocracy.net/yourdatalive
+The following files show the first, live implementation of yourData on our Wagtail (Django) website which is also visible to UK visitors here: https://opendemocracy.net/yourdatalive
 
 This is implemented using the [Wagxperience personalisation module](http://wagxperience.io/). The exact modifications in this iteration are captured in the following files from our website. The website repository is not yet open-source but we hope that the files here will help anyone wanting to make concrete contributions to the project design.
 
