@@ -364,7 +364,7 @@ Please email any enquiries to matthew.linares -@- opendemocracy.net
 
 ### Resources
 
-**DjangoLondon Presentation 2019 – Data Transparency on Django with yourData**[https://skillsmatter.com/skillscasts/14632-data-transparency-on-django-with-yourdata](https://skillsmatter.com/skillscasts/14632-data-transparency-on-django-with-yourdata)
+**DjangoLondon Presentation 2019 – Data Transparency on Django with yourData:** [https://skillsmatter.com/skillscasts/14632-data-transparency-on-django-with-yourdata](https://skillsmatter.com/skillscasts/14632-data-transparency-on-django-with-yourdata)
 
 
 ### Glossary
