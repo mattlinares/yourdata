@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+  "name": "Your Data",
+  "description": "Displays a sidebar that shows yourData for the current page",
+  "version": "0.1",
+  "applications": {
+    "gecko": {
+      "strict_min_version": "54.0a1"
+    }
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "sidebar_action": {
+    "default_icon": "icons/your-data.png",
+    "default_title": "yourData",
+    "default_panel": "panel/panel.html"
+  },
+
+  "permissions": ["cookies", "<all_urls>", "tabs"],
+
+  "commands": {
+    "_execute_sidebar_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y"
+      }
+    }
+  }
+}
